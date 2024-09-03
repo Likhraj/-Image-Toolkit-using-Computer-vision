@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Toolkit - Processed Image</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000; /* Black background */
+      color: #fff; /* White text color */
+    }
+    /* Loading screen styles */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transition: opacity 1s ease, visibility 1s ease;
+    }
+    .loading-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .spinner-border {
+      width: 4rem;
+      height: 4rem;
+      color: #fff;
+    }
+    .image-container {
+      position: relative;
+      display: inline-block;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.7); /* Red blurred border */
+      padding: 10px; /* Optional padding for border */
+      background-color: rgba(255, 0, 0, 0.2); /* Slight red background to enhance border effect */
+    }
+    .image-container {
+      position: relative;
+      display: inline-block;
+      border-radius: 5px;
+      overflow: hidden;
+      width: 1000px; /* Large size responsive image */
+      height: 80vh; /* Constrain the height */
+      box-shadow: 0 0 15px 15px rgba(255, 0, 0, 0.7); /* Red blurred border */
+      padding: 3px; /* Optional padding for border */
+      background-color: rgba(255, 0, 0, 0.2); /* Slight red background to enhance border effect */
+    }
+    .btn-success {
+      margin-top: 15px; /* Spacing above the download button */
+    }
+    .imgg{
+    width: 990px; /* Large size responsive image */
+      height: 724px;
+    }
+  </style>
+</head>
+<body style="background-image: linear-gradient(to left, white,black, grey,red,blue);">
+  <!-- Loading screen overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div class="container mt-5 text-center">
+    <h2 class="mb-4">Your Processed Image</h2>
+    <div class="image-container">
+      <img class = "imgg" src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Processed Image">
+    </div>
+    <div>
+      <a href="{{ url_for('static', filename='uploads/' + filename) }}" class="btn btn-success" download>Download Image</a>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Wait for the window to fully load, then hide the loading overlay
+    window.addEventListener('load', function() {
+      var loadingOverlay = document.getElementById('loadingOverlay');
+      loadingOverlay.classList.add('hidden');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Toolkit</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome for icons -->
+  <style>
+    .social-icons a {
+      color: #fff;
+      margin: 0 15px;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+    .social-icons a:hover {
+      color: #0d6efd; /* Bootstrap primary color */
+    }
+    footer {
+      background-color: #343a40;
+      color: #adb5bd;
+      padding: 30px 0;
+    }
+    footer a {
+      color: #adb5bd;
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+    .header-image {
+      width: 100%;
+      height: 327px;
+      object-fit: cover;
+      background:black;
+    }
+    .containerp {
+      color:white;
+      border: 1px white solid;
+      border-radius:7px;
+      position: relative;
+      background: linear-gradient(90deg, rgba(0,0,0,0.21332282913165268) 0%, rgba(0,0,0,0.2329306722689075) 100%);
+      backdrop-filter: blur(10px); /* Apply blur effect */
+      padding: 20px; /* Optional padding */
+    }
+    .containerm{
+    color:white;
+    }
+    .btnclass{
+    width:400px;
+    font-weight: 700;
+    color:white;
+    background-color:black;
+    }
+     .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        /* Modal content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* Close button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+      .header-image {
+            display: flex;
+            align-items: center; /* Center items vertically */
+            justify-content: space-between; /* Distribute items horizontally */
+            height: 327px;
+            width: 100vw; /* Full viewport width */
+            padding: 0 20px; /* Optional: Add some horizontal padding */
+            box-sizing: border-box; /* Ensure padding is included in width */
+        }
+        .header-image img {
+            height: 100%; /* Make images cover the full height of the div */
+        }
+        .header-image .text {
+            flex: 1; /* Allow text to take up remaining space */
+            text-align: center; /* Center text horizontally */
+            font-size: 150px; /* Adjust text size as needed */
+            color: white; /* Adjust text color as needed */
+            font-family:Papyrus;
+        }
+        .header-image .left-img {
+            width: 400px; /* Adjust width as needed */
+            padding:40px;
+
+        }
+        .header-image .right-img {
+            width: 400px; /* Adjust width as needed */
+            padding:40px;
+        }
+      .sub{
+            font-size: 20px; /* Adjust text size as needed */
+            color: white; /* Adjust text color as needed */
+            font-family:serif;
+            padding:5px;
+      }
+      .timg{
+      height:40px;
+      }
+  </style>
+</head>
+<body style="background-image: linear-gradient(to left, white,black, grey,red,blue);">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(68,233,212,0.6334908963585435) 35%, rgba(255,255,255,1) 48%, rgba(148,85,214,0.577468487394958) 54%, rgba(0,0,0,1) 100%);">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">IMAGE TOOLKIT</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="showModal()">Contact us</a>
+
+             <div id="contactModal" class="modal">
+                  <div class="modal-content">
+                      <span class="close" onclick="closeModal()">&times;</span>
+                      <h2>Contact Us</h2>
+                      <form id="contact-form">
+                          <label for="name">Name:</label><br>
+                          <input type="text" id="name" name="name" required style="width:700px;">
+                          <br>
+                          <label for="email">Email:</label><br>
+                          <input type="email" id="email" name="email" required style="width:700px;"> <br>
+                          <label for="message">Message:</label> <br>
+                          <textarea id="message" name="message" rows="4" required style="width:700px;"></textarea> <br> <br>
+                          <button type="submit">Send</button>
+                      </form>
+                  </div>
+              </div>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Help</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header Image -->
+  <div class="header-image">
+        <img src="{{ url_for('static', filename='image/2.png') }}" alt="Left Image" class="left-img">
+        <div class="text"><img src="{{ url_for('static', filename='image/1.png') }}" alt="Left Image" class="timg">
+        <p class="sub">This Image Toolkit provides various features like grayscale, sepia, blur, sketch, cartoon effects, and background removal. Easily apply these effects to enhance or modify your photos.</p>
+        </div>
+        <img src="{{ url_for('static', filename='image/2.png') }}" alt="Right Image" class="right-img">
+  </div>
+
+  <div class="container containerp mt-4">
+    <form method="post" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Upload an Image</label>
+        <input class="form-control" type="file" name="file" id="formFile" required>
+      </div>
+      <div class="mb-3">
+        <label for="effect" class="form-label">Choose Operation</label>
+        <select class="form-select" name="effect" id="effect" required>
+            <option value="Black & White">Black & White</option>
+            <option value="Blur">Blur</option>
+            <option value="Vignette">Vignette</option>
+            <option value="Cartoon">Cartoon</option>
+            <option value="Sketch">Sketch</option>
+            <option value="Flip">Flip</option>
+            <option value="Remove Background">Remove Background</option>
+            <option value="Edge Detection">Edge Detection</option>
+        </select>
+      </div>
+      <button class="btn btn-primary btnclass" type="submit">Process Image</button>
+    </form>
+  </div>
+
+  <!-- About Section -->
+  <div class="container mt-5 containerm">
+    <h3>About Image Toolkit</h3>
+    <p>
+      Image Toolkit is a powerful tool designed to enhance your images with various effects such as blur, black and white, sketch, and cartoon styles.
+      Whether you are looking to add some artistic flair or simply make adjustments to your images, Image Toolkit provides an easy-to-use interface
+      and quick processing to meet your needs.
+    </p>
+  </div>
+
+  <!-- Footer Section -->
+  <footer style="background:black;">
+    <div class="container text-center" >
+      <div class="row">
+        <div class="col-md-6 mb-3 mb-md-0">
+          <p>&copy; 2024 Image Toolkit. All rights reserved.</p>
+          <p>Designed and developed by Gyanesh</p>
+        </div>
+        <div class="col-md-6">
+          <div class="social-icons mb-3">
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+          <a href="#" class="text-decoration-none">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+        function showModal() {
+            document.getElementById('contactModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').style.display = 'none';
+        }
+
+        // Close the modal when clicking outside of it
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('contactModal')) {
+                document.getElementById('contactModal').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
